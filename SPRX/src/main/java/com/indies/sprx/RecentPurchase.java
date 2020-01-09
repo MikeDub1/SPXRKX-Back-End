@@ -1,7 +1,9 @@
 package com.indies.sprx;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/*
+@author: mduboc
+*/
 public class RecentPurchase
 {
     private String itemName;
