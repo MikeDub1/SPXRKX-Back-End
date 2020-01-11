@@ -10,14 +10,27 @@ public class RecentPurchase
     private String sellerName;
     private Date datePlaced;
 
-    public RecentPurchase(String iName, String sName, SimpleDateFormat dPlaced)
+    public RecentPurchase(String iName, String sName, Date dPlaced)
     {
         itemName = iName;
         sellerName = sName;
-        datePlaced = new Date(dPlaced.toPattern());
+        datePlaced = dPlaced;
         
     }
 
+    public String getItemName()
+    {
+        return itemName;
+    }
+    public String getSellerName()
+    {
+        return sellerName;
+    }    
+    public Date getDate()
+    {
+        return datePlaced;
+    }
+    
     public String toString()
     {
         return itemName + "Placed on:\n" + datePlaced.toString() + "\n" + "Seller name:\n" + sellerName;
