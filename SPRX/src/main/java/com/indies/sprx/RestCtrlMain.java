@@ -54,4 +54,28 @@ public List<RecentPurchase> latestPurchases(@RequestParam(required = false) Inte
 
     return listPurchases.subList(0, numListRecentPurchases);
 }
+
+
+
+
+
+
+
+@RequestMapping(value = "/SignUp", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+
+public String signUp(@RequestParam(name="first_name") String Fname, @RequestParam(name ="last_name") String Lname,  
+@RequestParam Integer Age, @RequestParam(name = "type") Integer isBuyer, @RequestParam Double xloc, 
+@RequestParam Double yloc, @RequestParam String username, @RequestParam String password, @RequestParam String email)
+{
+    if(isBuyer != 1 && isBuyer != 0) return "isBuyer must be either 1 or 0.";
+    if(Age < 18) return "Error: User must be either 18 years or older to register.";
+
+    
+    jdbc_connector.update("INSERT INTO `User`(UserType, FirstName, LastName, UserName, `Password`, Email, Age, XLocation, YLocation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", isBuyer, Fname, Lname, username, password, email, Age, xloc, yloc);
+        
+    if(isBuyer == 1) jdbc_connector.execute("CALL updateBuyerTable(\"" + username + "\")");
+    else {jdbc_connector.execute("CALL updateSellerTable(\"" + username + "\")");}
+    
+    return "Success";
+}
 }
