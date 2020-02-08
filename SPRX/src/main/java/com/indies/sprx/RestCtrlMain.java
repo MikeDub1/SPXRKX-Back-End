@@ -78,4 +78,34 @@ public String signUp(@RequestParam(name="first_name") String Fname, @RequestPara
     
     return "Success";
 }
+
+
+
+@RequestMapping(value = "/getPrices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+public double[] getTotalPrice(@RequestParam String[] productNames, @RequestParam String[] sellerNames)
+{
+    int size = productNames.length;
+    double[] prices = new double[size];
+
+    String sql = "SELECT price FROM Sells\n"
+                 + "INNER JOIN\n" 
+                 + "Product on Product.ProductNum = Sells.ProductNum\n"
+                 + "INNER JOIN\n"
+                 + "Seller ON Sells.SellerNum = Seller.SellerNum\n"
+                 +"INNER JOIN\n"
+                 + "User ON Seller.UserNum = User.UserNum\n"
+                 + "WHERE\n"
+                 + "User.FirstName = ? AND Product.Name = ?";
+    for(int PSListItr = 0; PSListItr < size; PSListItr++)
+    {
+        double currItemPrice = jdbc_connector.queryForObject(sql, new Object[]{sellerNames[PSListItr], productNames[PSListItr]}, Double.class);
+        prices[PSListItr] = currItemPrice;
+    }
+
+    return prices;
+
+    
+
+}
+
 }
