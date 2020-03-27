@@ -8,28 +8,31 @@ package com.indies.sprx;
 
 /**
  *
- * @author mians, dubocm
+ * @author mians, Michael Duboc
  */
+
 public abstract class User 
 {
-    private String Fname;
-    private String Lname;
+    private int userType; 
+    private String fname;
+    private String lname;
+    private long Id;
     private String email;
     private double xloc;
     private double yloc;
     private String username;
     private String password;
-    private int Age;
+    private int age;
 
 
     public User(String Fname, String Lname, String email, double xloc, double yloc, String username, String password, int Age)
     {
-        this.Fname = Fname;
-        this.Lname = Lname;
+        fname = Fname;
+        lname = Lname;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.Age = Age;
+        age = Age;
         this.xloc = xloc;
         this.yloc = yloc;
 
@@ -37,12 +40,12 @@ public abstract class User
 
     public String getFname()
     {
-        return Fname;
+        return fname;
     }
 
     public String getLname()
     {
-        return Lname;
+        return lname;
     }
 
     public String getEmail()
@@ -70,7 +73,7 @@ public abstract class User
 
     public int getAge()
     {
-        return Age;
+        return age;
     }
 
 }
