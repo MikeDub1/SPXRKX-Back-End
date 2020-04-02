@@ -16,7 +16,7 @@ public abstract class User
     private int userType; 
     private String fname;
     private String lname;
-    private long Id;
+    private long id;
     private String email;
     private double xloc;
     private double yloc;
@@ -25,7 +25,7 @@ public abstract class User
     private int age;
 
 
-    public User(String Fname, String Lname, String email, double xloc, double yloc, String username, String password, int Age)
+    public User(String Fname, String Lname, String email, double xloc, double yloc, String username, String password, int Age, int type)
     {
         fname = Fname;
         lname = Lname;
@@ -74,6 +74,11 @@ public abstract class User
     public int getAge()
     {
         return age;
+    }
+
+    public void setID(long l)
+    {
+        id = l;
     }
 
 }

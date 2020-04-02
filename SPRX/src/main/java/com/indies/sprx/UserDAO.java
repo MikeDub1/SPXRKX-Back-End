@@ -18,7 +18,7 @@ import java.util.Stack;
 import java.sql.*;
 
 @RestController
-public class UserDAO
+public class UserDAO implements DAOInterface
 {
     @Autowired
     JdbcTemplate connection;
@@ -38,7 +38,9 @@ public class UserDAO
     *          error.
     */
     @RequestMapping(value="/signUp", method=RequestMethod.POST , produces=MediaType.APPLICATION_JSON_VALUE)
-    public String signUp(@RequestParam(name="first_name") String Fname, @RequestParam(name ="last_name") String Lname,  
+
+    @Override
+    public String create(@RequestParam(name="first_name") String Fname, @RequestParam(name ="last_name") String Lname,  
     @RequestParam Integer Age, @RequestParam(name = "type") Integer isBuyer, @RequestParam Double xloc, 
     @RequestParam Double yloc, @RequestParam String username, @RequestParam String password, @RequestParam String email)
     {
@@ -79,6 +81,9 @@ public class UserDAO
         return "Success";
     }
 
-    
+    public User getUser(String username)
+    {
+        return connection.query("SELECT * FROM User WHERE UserNum = \"" + username "\"",  new UserResultSetExtractor());
+    }
     //write User controller code here.
 }
