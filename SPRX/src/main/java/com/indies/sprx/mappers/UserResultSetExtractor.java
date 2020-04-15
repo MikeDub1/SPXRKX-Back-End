@@ -12,6 +12,8 @@ public class UserResultSetExtractor implements ResultSetExtractor<User>
     public User extractData(ResultSet rs) throws SQLException
     {
         User newUser;
+        if(rs.next() == false) return null;
+        
         Integer type = rs.getInt("UserType");
         Integer age = rs.getInt("Age");
 

@@ -66,7 +66,7 @@ public class UserDAO implements DAOInterface
 
     public User getUser(String username)
     {
-        return connection.query("SELECT * FROM User WHERE UserNum = \"" + username + "\"",  new UserResultSetExtractor());
+        return connection.query("SELECT * FROM User WHERE Username = \"" + username + "\"",  new UserResultSetExtractor());
     }
 
     public User getUserByEmail(String email)
