@@ -16,16 +16,16 @@ public abstract class User
     private int userType; 
     private String fname;
     private String lname;
-    private long id;
+    private long userNum;
     private String email;
     private double xloc;
     private double yloc;
     private String username;
     private String password;
     private int age;
+ 
 
-
-    public User(String Fname, String Lname, String email, double xloc, double yloc, String username, String password, int Age, int type)
+    public User(String Fname, String Lname, String email, double xloc, double yloc, String username, String password, int Age, int type, long userNum)
     {
         fname = Fname;
         lname = Lname;
@@ -35,25 +35,26 @@ public abstract class User
         age = Age;
         this.xloc = xloc;
         this.yloc = yloc;
+        this.userNum = userNum;
 
     }
 
-    public String getFname()
+    private String getFname()
     {
         return fname;
     }
 
-    public String getLname()
+    private String getLname()
     {
         return lname;
     }
 
-    public String getEmail()
+    private String getEmail()
     {
         return email;
     }
 
-    public double[] getCurrLoc()
+    private double[] getCurrLoc()
     {
         double[] currLoc = new double[2];
         currLoc[0] = xloc;
@@ -61,24 +62,24 @@ public abstract class User
         return currLoc;
     }
 
-    public String getUsername()
+    private String getUsername()
     {
         return username;
     }
 
-    public String getPassword()
+    private String getPassword()
     {
         return password;
     }
 
-    public int getAge()
+    private int getAge()
     {
         return age;
     }
 
-    public void setID(long l)
+    private void setID(long l)
     {
-        id = l;
+        userNum = l;
     }
 
 }

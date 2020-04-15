@@ -6,17 +6,13 @@
 
 package com.indies.sprx;
 
-public class Seller
+public class Seller extends User
 {
-    int userNum;
     int sellerNum;
 
-    public Seller(int userNum, int sellerNum)
+    public Seller(String Fname, String Lname, String email, double xloc, double yloc, String username, String password, int Age, long userNum)
     {
-        this.userNum = userNum;
-        this.sellerNum = sellerNum;
+        super(Fname, Lname, email, xloc, yloc, username, password, Age, 0, userNum);
     }
-
-    public int getUserNum() {return userNum;}
     public int getSellerNum() {return sellerNum;}
 }

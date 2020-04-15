@@ -2,12 +2,16 @@ package com.indies.sprx.mappers;
 
 import org.springframework.jdbc.core.ResultSetExtractor;
 import java.sql.ResultSet;
+import com.indies.sprx.Seller;
+import com.indies.sprx.Buyer;
 import com.indies.sprx.User;
+import java.sql.SQLException;
 
-public class UserResultSetExtractor implements ResultSetExtractor
+public class UserResultSetExtractor implements ResultSetExtractor<User>
 {
-    public User extractData(ResultSet rs)
+    public User extractData(ResultSet rs) throws SQLException
     {
+        User newUser;
         Integer type = rs.getInt("UserType");
         Integer age = rs.getInt("Age");
 
@@ -22,8 +26,8 @@ public class UserResultSetExtractor implements ResultSetExtractor
         String password = rs.getString("Password");
         String email = rs.getString("Email");
         
-        User newUser = new User(fname, lname, email, xloc, yloc, username, password, age, type);
-        newUser.setID(id);
+        if(type == 1) newUser = new Buyer(fname, lname, email, xloc, yloc, username, password, age, id);
+        else newUser = new Seller(fname, lname, email, xloc, yloc, username, password, age, id);
         return newUser;
     }
 }

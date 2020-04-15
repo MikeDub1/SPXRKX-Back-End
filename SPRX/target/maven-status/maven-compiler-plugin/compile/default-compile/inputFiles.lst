@@ -7,3 +7,4 @@
 /home/ubuntu/SPXRKX-Back-End/SPRX/src/main/java/com/indies/sprx/RestCtrlMain.java
 /home/ubuntu/SPXRKX-Back-End/SPRX/src/main/java/com/indies/sprx/Product.java
 /home/ubuntu/SPXRKX-Back-End/SPRX/src/main/java/com/indies/sprx/UserDAO.java
+/home/ubuntu/SPXRKX-Back-End/SPRX/src/main/java/com/indies/sprx/mappers/UserResultSetExtractor.java

@@ -14,7 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.MediaType;
 import java.util.ArrayList;
 import java.util.Stack;
-
+import com.indies.sprx.mappers.UserResultSetExtractor;
 import java.sql.*;
 
 @RestController
@@ -49,28 +49,11 @@ public class UserDAO implements DAOInterface
         if(Age < 18) return "Error: User must be either 18 years or older to register.";
 
         
-        Integer id = connection.query("SELECT EXISTS(SELECT * FROM User WHERE UserName = \"" + username + "\") AS Exist;", new ResultSetExtractor<Integer>()
-        {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException
-            {
-                rs.next();
-                Integer id = new Integer(rs.getInt("Exist"));
-                return id;
-            }
-        });
+        User candidate = getUser(username);
+        User candidate_email = getUserByEmail(email);
 
-        Integer chk_email = connection.query("SELECT EXISTS(SELECT * FROM User WHERE Email = \"" + email + "\") AS Exist;", new ResultSetExtractor<Integer>()
-        {
-            public Integer extractData(ResultSet rs) throws SQLException, DataAccessException
-            {
-                rs.next();
-                Integer chk_email = new Integer(rs.getInt("Exist"));
-                return chk_email;
-            }
-        });
-
-        if(id != 0) return "Username is already taken!";
-        if(chk_email != 0) return "This email is already tied to a different account";
+        if(candidate != null) return "Username is already taken!";
+        else if(candidate_email != null) return "This email is already tied to a different account";
 
         connection.update("INSERT INTO `User`(UserType, FirstName, LastName, UserName, `Password`, Email, Age, XLocation, YLocation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", isBuyer, Fname, Lname, username, password, email, Age, xloc, yloc);
         
@@ -83,7 +66,13 @@ public class UserDAO implements DAOInterface
 
     public User getUser(String username)
     {
-        return connection.query("SELECT * FROM User WHERE UserNum = \"" + username "\"",  new UserResultSetExtractor());
+        return connection.query("SELECT * FROM User WHERE UserNum = \"" + username + "\"",  new UserResultSetExtractor());
     }
+
+    public User getUserByEmail(String email)
+    {
+        return connection.query("SELECT * FROM User WHERE Email = \"" + email + "\"",  new UserResultSetExtractor());
+    }
+    
     //write User controller code here.
 }

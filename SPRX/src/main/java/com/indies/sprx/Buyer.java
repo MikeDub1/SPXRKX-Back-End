@@ -7,18 +7,13 @@
 package com.indies.sprx;
 
 
-public class Buyer
+public class Buyer extends User
 {
-    
-    int userNum;
     int buyerNum;
 
-    public Buyer(int userNum, int buyerNum)
+    public Buyer(String Fname, String Lname, String email, double xloc, double yloc, String username, String password, int Age, long userNum)
     {
-        this.userNum = userNum;
-        this.buyerNum = buyerNum;
+        super(Fname, Lname, email, xloc, yloc, username, password, Age, 1, userNum);
     }
-
-    public int getUserNum() {return userNum;}
     public int getBuyerNum() {return buyerNum;}
 }
