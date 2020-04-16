@@ -1,6 +1,7 @@
 com/indies/sprx/User.class
 com/indies/sprx/Product.class
 com/indies/sprx/OrderPlaced.class
+com/indies/sprx/mappers/OrdersRSE.class
 com/indies/sprx/RestCtrlMain.class
 com/indies/sprx/Seller.class
 com/indies/sprx/DAOInterface.class

@@ -74,5 +74,17 @@ public class UserDAO implements DAOInterface
         return connection.query("SELECT * FROM User WHERE Email = \"" + email + "\"",  new UserResultSetExtractor());
     }
     
-    //write User controller code here.
+@RequestMapping(value = "/latestPurchases", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+public List<OrderPlaced> latestPurchases(@RequestParam(required = false) Integer numListRecentPurchases, @RequestParam String uname)
+{
+    if(numListRecentPurchases == null) {numListRecentPurchases = 2;}
+    
+    List<OrderPlaced> listPurchases = jdbc_connector.query("CALL `getPurchases`(\"" + uname + "\");", new OrdersRSE());
+
+
+    if(numListRecentPurchases > listPurchases.size()) {numListRecentPurchases = listPurchases.size();}
+
+    return listPurchases.subList(0, numListRecentPurchases);
+}
+
 }

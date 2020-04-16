@@ -26,34 +26,6 @@ public class RestCtrlMain
     @Autowired
     JdbcTemplate jdbc_connector; //Connect to MySQL using JDBC.
 
-//@RequestMapping(value = "/latestPurchases", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-/*public List<OrderPlaced> latestPurchases(@RequestParam(required = false) Integer numListRecentPurchases, @RequestParam String uname)
-{
-    if(numListRecentPurchases == null) {numListRecentPurchases = 2;}
-    
-    List<OrderPlaced> listPurchases = jdbc_connector.query("CALL `getPurchases`(\"" + uname + "\");", new ResultSetExtractor<List>()
-    {
-        public List extractData(ResultSet rs) throws SQLException, DataAccessException
-        {
-            List<OrderPlaced> lp = new ArrayList<RecentPurchase>();
-
-            while(rs.next())
-            {
-                String itemName = rs.getString("Name");
-                String sellerName = rs.getString("FirstName") + " " + rs.getString("LastName");
-                Date datePlaced = rs.getDate("DatePlaced");
-                RecentPurchase newRP = new RecentPurchase(itemName, sellerName, datePlaced);
-                lp.add(newRP);
-            }
-            return lp;
-        }
-    });
-
-
-    if(numListRecentPurchases > listPurchases.size()) {numListRecentPurchases = listPurchases.size();}
-
-    return listPurchases.subList(0, numListRecentPurchases);
-}*/
 
 
 

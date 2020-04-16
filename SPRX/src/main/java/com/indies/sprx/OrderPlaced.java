@@ -5,7 +5,7 @@ package com.indies.sprx;
 * @author Michael Duboc
 *
 */
-import java.util.Calendar;
+import java.util.Date;
 
 
 public class OrderPlaced
@@ -18,22 +18,22 @@ public class OrderPlaced
     private int numItems;
 
     //also non-setable.
-    private Calendar datePlaced = Calendar.getInstance();
+    private Date datePlaced;
     private int sum;
-    public OrderPlaced(char st, int on, int cn, int ni, int year, int month, int day)
+    public OrderPlaced(char st, int on, int cn, int ni, Date datePlaced)
     {
         status = st;
         orderNum = on;
         cusNum = cn;
         numItems = ni;
-        datePlaced.set(year, month, day);
+        this.datePlaced = datePlaced;
     }
 
     public char getStatus(){return status;}
     public int getOrderNum(){return orderNum;}
     public int getCusNum(){return cusNum;}
     public int getNumItems(){return numItems;}
-    public Calendar getDatePlaced(){return datePlaced;}
+    public Date getDatePlaced(){return datePlaced;}
     public int getSum(){return sum;}
 
     public void setStatus(char status){this.status = status;}
